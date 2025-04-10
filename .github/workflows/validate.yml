@@ -1,0 +1,19 @@
+name: validate
+on:
+  push:
+    branches:
+      - main
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkea el repositorio
+      uses: actions/checkout@v3
+    - name: instala shellcheck
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y shellcheck
+    - name: corre shellcheck
+      run: |
+        shellcheck -x -f gcc *.sh
+      working-directory: .
